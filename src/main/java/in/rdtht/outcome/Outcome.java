@@ -130,6 +130,7 @@ public sealed interface Outcome<T> permits Outcome.Ok, Outcome.Err, Outcome.None
     }
 
     /// #### Unwraps the value of the outcome only if Ok.
+    ///
     /// @throws RuntimeException if not Ok
     default T unwrap() {
         if (this instanceof Ok<T>(T value)) return value;
@@ -255,7 +256,7 @@ public sealed interface Outcome<T> permits Outcome.Ok, Outcome.Err, Outcome.None
                 }
 
                 if (result == null) return new Err<>(new OutcomeError.UnknownErr(
-                            UNEXPECTED_ERROR, "Outcome mapper returned null", null));
+                        UNEXPECTED_ERROR, "Outcome mapper returned null", null));
 
                 return this;
             } catch (RuntimeException e) {
